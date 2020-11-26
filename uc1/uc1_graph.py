@@ -84,7 +84,7 @@ class Uc1_graph(object):
 
             # TODO: check if attributes should be added here.
             for edge in G_help.edges:
-                G_help.add_edge(edge[0], edge[1], role_affinity=self.MM_PR)
+                G_help.add_edge(edge[0], edge[1], BW=self.LoRaWAN_databit_translation[datarate][0], PR=self.MM_PR)
 
             for node in G_help.nodes:
                 if node == 0:
