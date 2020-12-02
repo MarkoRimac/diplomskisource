@@ -1,0 +1,12 @@
+{
+  "outFILE": "outfile",
+  "nb_regions":  "2",
+  "nb_core_nodes":  "30",
+  "nb_gw_per_region":  "1",
+  "nb_gw_per_region_variance": "3",
+  "avg_deg_core_node":  "4",
+  "nb_mm": "2",
+  "nb_mm_variance": "2",
+  "seed": "2"
+}
+
