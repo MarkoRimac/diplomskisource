@@ -41,7 +41,7 @@ def get_and_check_args(data):
     x = list(data.values())
     arguments = parser.parse_args(x)
 
-    # Ovisnosti među argumentima
+    # Ovisnosti medu argumentima
     if (arguments.nb_gw_per_region + arguments.nb_gw_per_region_variance * 3) * arguments.nb_regions > arguments.nb_core_nodes - arguments.nb_regions:
         raise argparse.ArgumentTypeError("Please make sure that max possible number of gateways (considering 3sigma normal distribution with a variance) be less than a total nb_core_nodes! ")
     return arguments
