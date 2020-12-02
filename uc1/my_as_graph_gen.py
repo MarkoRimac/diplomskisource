@@ -75,7 +75,7 @@ class MY_as_graph_gen:
     """
 
     def __init__(self, nb_regions, nb_core_nodes, nb_gw_per_region, nb_gw_per_region_variance, avg_deg_core_node,
-                nb_mm, nb_mm_variance, seed):
+                nb_mm, nb_mm_variance, t_connection_probability, seed):
         """ Initializes variables. Immediate numbers are taken from [1].
 
         Parameters
@@ -97,7 +97,7 @@ class MY_as_graph_gen:
         in Communications, vol. 28, no. 8, pp. 1250-1261, October 2010.
         """
 
-        self.t_m = 0.375  #  probability M's provider is T, ovako osiguravamo da veza izmedu regija ne bude uvijek
+        self.t_m = t_connection_probability / 100  #  probability M's provider is T, ovako osiguravamo da veza izmedu regija ne bude uvijek
                           #  jednog linka (u slucaju da su nam NR u zasebnim regijama. Za sada smo stavili da su NR u
                           #  svim regijama
 
@@ -477,7 +477,7 @@ class MY_as_graph_gen:
 
 
 def my_random_internet_as_graph(nb_regions, nb_core_nodes, nb_gw_per_region, nb_gw_per_region_variance, avg_deg_core_node,
-                nb_mm, nb_mm_variance, seed=None):
+                nb_mm, nb_mm_variance, t_connection_probability, seed=None):
     """ Generates a random undirected graph resembling the Internet AS network
 
     Parameters
@@ -515,6 +515,6 @@ def my_random_internet_as_graph(nb_regions, nb_core_nodes, nb_gw_per_region, nb_
     """
 
     GG = MY_as_graph_gen(nb_regions, nb_core_nodes, nb_gw_per_region, nb_gw_per_region_variance, avg_deg_core_node,
-                nb_mm, nb_mm_variance, seed)
+                nb_mm, nb_mm_variance, t_connection_probability, seed)
     G = GG.generate()
     return G

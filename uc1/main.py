@@ -7,7 +7,7 @@ def main(data):
     """
     TOPOLOGY creation
     """
-    G = my_random_internet_as_graph(data.nb_regions, data.nb_core_nodes, data.nb_gw_per_region, data.nb_gw_per_region_variance, data.avg_deg_core_node, data.nb_mm, data.nb_mm_variance, data.seed)
+    G = my_random_internet_as_graph(data.nb_regions, data.nb_core_nodes, data.nb_gw_per_region, data.nb_gw_per_region_variance, data.avg_deg_core_node, data.nb_mm, data.nb_mm_variance, data.t_connection_probability, data.seed)
     #graph = Uc1_graph(args.core_node_count, args.gw_node_count, args.method, args.star_node_count, args.variance, args.seed)
     nx.write_gexf(G, data.outFILE + '.gexf')
 
@@ -36,6 +36,7 @@ def get_and_check_args(data):
     parser.add_argument("avg_deg_core_node", type=check_bigger_than_zero, help="average degree of a core node, Pick a random integer with uniform probability.")
     parser.add_argument("nb_mm", type=check_positive_and_zero, help="Number of measuring modules")
     parser.add_argument("nb_mm_variance", type=check_positive_and_zero, help="variance for normal distribution for number of measuring modules")
+    parser.add_argument("t_connection_probability", type=check_positive_and_zero, help="probability of m connections to T nodes")
     parser.add_argument("seed", type=check_positive_and_zero, help="set seed for random values")
 
     x = list(data.values())
