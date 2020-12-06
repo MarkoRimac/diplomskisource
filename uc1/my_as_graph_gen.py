@@ -217,7 +217,8 @@ class MY_as_graph_gen:
             """
         node_options = set()
 
-        self.G.add_node(i, type=kind, peers=0)
+        self.G.add_node(i, type=kind)
+
         self.customers[i] = set()
         self.providers[i] = set()
         self.nodes[kind].add(i)
@@ -226,10 +227,14 @@ class MY_as_graph_gen:
             node_options = node_options.union(self.regions["REG" + str(r)])  # Union of regions
             self.regions["REG" + str(r)].add(i)
             self.reg_count = (self.reg_count + 1) % self.nb_regions # u svakoj regiji po reg_count
+            self.G.add_node(i, regions="REG" + str(r)) # for debugging add region attribute
         else:
+            region_union = ""
             for r in rand.sample(list(self.regions), regs):  # Choose random regs
+                region_union = region_union + "REG" + str(r)                                        # For debugging
                 node_options = node_options.union(self.regions[r])  # Union of regions
                 self.regions[r].add(i)
+            #self.G.add_node(i, regions=region_union) # for debugging add region attribute
 
         edge_num = uniform_int_from_avg(1, avg_deg, self.seed)
 
@@ -414,7 +419,7 @@ class MY_as_graph_gen:
         in Communications, vol. 28, no. 8, pp. 1250-1261, October 2010.
         """
 
-        self.graph_regions(5)
+        self.graph_regions(self.nb_regions)
         self.customers = {}
         self.providers = {}
         self.nodes = {"T": set(), "M": set(), "GW": set(), "C": set(), "MM": set()}

@@ -7,7 +7,7 @@
   "avg_deg_core_node":  "4",
   "nb_mm": "2",
   "nb_mm_variance": "2",
-  "t_connection_probability": "25",
+  "t_connection_probability": "0",
   "seed": "2"
 }
 
